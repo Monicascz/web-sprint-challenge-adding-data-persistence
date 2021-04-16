@@ -1,8 +1,34 @@
+//PROJECT //PROJECT //PROJECT //PROJECT //PROJECT //PROJECT //PROJECT //PROJECT //PROJECT //PROJECT 
 const express = require('express')
 
-const Tasks = require('./model.js')
+const Projects = require('./model.js')
 
 const router = express.Router()
+
+router.get('/', (req,res,next)=>{
+    Projects.find()
+    .then(data=>{
+        res.json(data)
+    })  
+    .catch(next) 
+   })
+
+
+router.post('/', (req,res,next)=>{
+    const newProject = req.body
+    Projects.createProject(newProject)
+    .then(project=>{
+        res.status(200).json(project)
+    })
+    .catch(next)
+})
+
+router.use((err, req, res, next) => { 
+    res.status(err.status || 500).json({
+      message: err.message,
+      stack: err.stack,
+    })
+  })
 
 module.exports = router;
 
