@@ -9,13 +9,13 @@ exports.up = function(knex) {
   })
   .createTable("resources", table=>{
       table.increments("resource_id")
-      table.string("resource_name").notNullable().unique()
-      table.string("resource_description")
+      table.string("resource_name", 30).notNullable().unique()
+      table.string("resource_description", 150)
   })
   .createTable("tasks", table=>{
       table.increments("task_id")
-      table.string("task_description").notNullable()
-      table.string("task_notes")
+      table.string("task_description", 30).notNullable()
+      table.string("task_notes", 150)
       table.boolean("task_completed").defaultTo(0)
       table.integer("project_id")
         .unsigned()
