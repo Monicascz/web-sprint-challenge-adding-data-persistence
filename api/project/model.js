@@ -6,24 +6,31 @@ const db = require("../../data/dbConfig.js")
 async function find(){
     return db("projects")
     .select("projects.*")
-    // .whereIn("project_completed",0).toString("false")
-    // .whereIn("project_completed",1).toString("true")
-}
+    }
 async function createProject(newProject){
-    // const projectArr = await db("projects")
+    // const projectArr = await db("projects").insert(newProject)
+       
+
     // projectArr.forEach(project=>{
-    //     if(project.project_completed === 0){
-    //         return project.project_completed = "false"
-    //     } if(project.project_completed === 1){
-    //         return project.project_completed = "true"
+    //     const changetoFalse=()=>{
+    //         project.project_completed=false;
     //     }
+    //     const changetoTrue=()=>{
+    //         project.project_completed=true;
+    //     }
+    //     if(project.project_completed === 0){
+    //         changetoFalse()
+    //     } if(project.project_completed === 1){
+    //          changetoTrue
+    //     }
+    //     return project
     // })
     
     const [project_id]= await db('projects').insert(newProject)
     return find().where({project_id}).first();
-    // if(newProject.project_completed === 1){
+    
         
-    // }
+    
 }
 
 module.exports = {
