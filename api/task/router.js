@@ -4,6 +4,31 @@ const Tasks = require('./model.js')
 
 const router = express.Router()
 
+
+router.get('/', (req,res,next)=>{
+    Tasks.find()
+    .then(data=>{
+        res.json(data)
+    })  
+    .catch(next) 
+   })
+
+router.post('/', (req,res,next)=>{
+    const newTask = req.body
+    Tasks.createProject(newTask)
+    .then(task=>{
+        res.status(200).json(task)
+    })
+    .catch(next)
+})
+
+router.use((err, req, res) => { 
+    res.status(err.status || 500).json({
+      message: err.message,
+      stack: err.stack,
+    })
+  })
+
 module.exports = router;
 // - [ ] `[POST] /api/tasks`
 
