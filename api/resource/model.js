@@ -7,10 +7,11 @@ const db = require("../../data/dbConfig.js")
 async function find(){
     return db("resources")
     .select("resources.*")
+    
 }
 async function createProject(newResource){ 
     const [resource_id]= await db('resources').insert(newResource)
-    return find().where("resource_id", resource_id).first();
+     find().where("resource_id", resource_id)
 }
 
 module.exports = {

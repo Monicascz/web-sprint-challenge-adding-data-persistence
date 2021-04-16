@@ -6,6 +6,8 @@ const db = require("../../data/dbConfig.js")
 async function find(){
     return db("projects")
     .select("projects.*")
+    // .whereIn("project_completed",0).toString("false")
+    // .whereIn("project_completed",1).toString("true")
 }
 async function createProject(newProject){
     // const projectArr = await db("projects")

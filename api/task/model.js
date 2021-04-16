@@ -11,11 +11,11 @@ async function find(){
 }
 async function createProject(newTask){ 
     const [task_id]= await db('tasks').insert(newTask)
-    if(newTask.task_completed === 0){
-        return newTask.task_completed = "false"
-    }if(newTask.task_completed === 1){
-        return newTask.task_completed = "true"
-    }
+    // if(newTask.task_completed === 0){
+    //     return newTask.task_completed = "false"
+    // }if(newTask.task_completed === 1){
+    //     return newTask.task_completed = "true"
+    // }
     return find().where("task_id", task_id).first();
 }
 
